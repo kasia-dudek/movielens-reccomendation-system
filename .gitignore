@@ -221,4 +221,14 @@ Thumbs.db
 config.ini
 secrets.yaml
 .secrets
-api_keys.txt 
+api_keys.txt
+
+# Project specific - MovieLens dataset
+ml-100k.zip
+ml-100k/
+ml-1m.zip
+ml-1m/
+ml-10m.zip
+ml-10m/
+ml-20m.zip
+ml-20m/ 
