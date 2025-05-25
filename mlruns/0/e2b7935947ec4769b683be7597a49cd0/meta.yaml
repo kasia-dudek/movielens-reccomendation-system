@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/kasiadudek/projects/kasia/semestr6/movielens-reccomendation-system/mlruns/0/e2b7935947ec4769b683be7597a49cd0/artifacts
+end_time: 1748176993171
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: e2b7935947ec4769b683be7597a49cd0
+run_name: movielens_experiment
+run_uuid: e2b7935947ec4769b683be7597a49cd0
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1748176986594
+status: 4
+tags: []
+user_id: kasiadudek
