@@ -15,6 +15,8 @@ Faktoryzacja macierzy jest jedną z najbardziej popularnych technik wykorzystywa
 ## 4. Opis danych
 Dane pochodzą z zestawu MovieLens 100K, który zawiera 100 000 ocen użytkowników dla 1 682 filmów. Dane zawierają informacje o identyfikatorach użytkowników, identyfikatorach filmów, ocenach oraz znacznikach czasowych. W projekcie wykorzystano jedynie ocenę (rating) użytkowników do trenowania modelu rekomendacji, przy czym każdy użytkownik i film są mapowani na indeksy numeryczne, aby mogły być wykorzystane w modelu opartym na Tensorach.
 
+![image](https://github.com/user-attachments/assets/61e0c6a1-2458-4a63-8e4f-52403f1c0830)
+
 ## 5. Działanie modelu
 - **Wczytanie i preprocessing danych** – Dane zostały wczytane z pliku CSV, a identyfikatory użytkowników i filmów zostały zmapowane na unikalne indeksy numeryczne.
 - **Modelowanie** – Zaimplementowano model rekomendacji oparty na faktoryzacji macierzy z dodatkowymi warstwami biasów oraz mechanizmem dropout, co miało na celu poprawienie ogólnej wydajności modelu.
