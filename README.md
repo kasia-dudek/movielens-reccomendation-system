@@ -1,5 +1,8 @@
 # System Rekomendacji Filmów - MovieLens
 
+Prace przygotowały:
+Karolina Dekajło i Katarzyna Dudek
+
 ## 1. Streszczenie
 Projekt dotyczy stworzenia systemu rekomendacji filmów opartego na algorytmie Matrix Factorization, wykorzystującym zbiór danych MovieLens 100K. Celem projektu było zaimplementowanie modelu w PyTorch, który na podstawie ocen użytkowników generuje spersonalizowane rekomendacje filmów. System uwzględnia regularyzację L2 oraz różne techniki optymalizacji w celu poprawy dokładności przewidywań.
 
@@ -21,7 +24,6 @@ Dane pochodzą z zestawu MovieLens 100K, który zawiera 100 000 ocen użytkownik
 - **Logowanie eksperymentów** – Eksperymenty zostały zapisane przy pomocy MLflow, co umożliwia śledzenie wyników oraz parametrów modelu.
 
 ## 6. Wyniki
-
 Metryki modelu na zbiorze testowym:
 - **RMSE**: 0.931
 - **MAE**: 0.733
@@ -30,17 +32,22 @@ Metryki modelu na zbiorze testowym:
 
 Najlepsze parametry: embedding_dim=32, l2_lambda=0.0001
 
+### Rozkład ocen w MovieLens
+![rating_distribution](https://github.com/user-attachments/assets/dc4ef01c-40d1-4ce9-80f9-12edf6d055a3)
 
-- **Rozkład ocen w MovieLens**
-- **Wykres straty treningu**
-- **Przewidywane vs rzeczywiste oceny**
-- **Macierz pomyłek**
-- **Precision@K i Recall@K dla różnych K**
-- **Rekomendacje dla użytkownika 1**
+### Wykres straty treningu
+![training_loss](https://github.com/user-attachments/assets/99882539-456c-4f49-9b2b-a3b612fbf45d)
 
+### Przewidywane vs rzeczywiste oceny
+![predicted_vs_actual](https://github.com/user-attachments/assets/bf8cfc68-fc12-48b1-97a1-164095c012e3)
+
+### Macierz pomyłek
+![confusion_matrix](https://github.com/user-attachments/assets/b9298e04-d028-4292-a8ea-4a173097c085)
+
+### Rekomendacje dla trzech użytkowników
+![image](https://github.com/user-attachments/assets/2e287fc2-747f-4c85-94c4-ce131b3edeea)
 
 ## 7. Struktura i uruchomienie kodu
-
 ### Wymagania
 ```bash
 pip install pandas numpy torch scikit-learn matplotlib seaborn mlflow
@@ -53,7 +60,7 @@ python movielens_recommendation.py
 
 ### Struktura projektu
 ```
-├── movielens_recommendation.py    # Główny skrypt
+├── movielens_recommendation.py   # Główny skrypt
 ├── ml-100k/                      # Dane MovieLens
 ├── results/                      # Wyniki i wizualizacje
 ├── mlruns/                       # Eksperymenty MLflow
@@ -67,23 +74,16 @@ Po uruchomieniu skryptu generowane są:
 - `results/recommendations.csv` - przykładowe rekomendacje
 
 ## 8. Proces wdrożenia na Azure Machine Learning
-Aby wdrożyć model rekomendacji na platformie Azure Machine Learning, należy przejść przez następujące etapy:
+Aby wdrożyć ten model rekomendacji na platformie Azure Machine Learning, należy przejść przez następujące etapy:
 1. **Utworzenie zasobu Azure Machine Learning Workspace**
-   - W pierwszym kroku utworzono zasób Azure Machine Learning Workspace w portalu Azure, który stanowi centralne miejsce do zarządzania wszystkimi zasobami związanymi z modelem.
-2. **Załadowanie danych do Azure ML**
-   - Dane zostały załadowane do Azure Machine Learning przy użyciu `datastore`, który jest miejscem przechowywania danych. Można to zrobić za pomocą Python SDK lub bezpośrednio w Azure ML Studio.
-3. **Stworzenie eksperymentu w Azure ML Studio**
-   - Następnie, w Azure ML Studio lub za pomocą Python SDK, stworzono eksperyment. Eksperyment to proces, który obejmuje trening, ewaluację oraz testowanie modelu.
-4. **Przeprowadzenie treningu modelu**
-   - Model został wytrenowany na zgromadzonych danych. Możliwość przeprowadzenia treningu obejmowała zarówno ręczne, jak i automatyczne dobieranie algorytmów. W tym przypadku wykorzystano algorytm Matrix Factorization do rekomendacji filmów.
-5. **Rejestracja modelu w Model Registry**
-   - Po zakończeniu treningu, model został zarejestrowany w **Model Registry**, co umożliwia zarządzanie wersjami i udostępnianie modelu do późniejszych wdrożeń.
-6. **Wdrożenie modelu jako usługę webową (REST API)**
-   - Model został wdrożony jako usługa webowa poprzez utworzenie **REST API**, co umożliwiło łatwą interakcję z modelem i jego integrację z innymi aplikacjami. Dzięki temu użytkownicy mogli w prosty sposób wysyłać zapytania do modelu i otrzymywać rekomendacje filmów.
-7. **Testowanie API i monitorowanie jego działania**
-   - Po wdrożeniu, API zostało przetestowane, a jego działanie monitorowane w czasie rzeczywistym. Azure ML oferuje narzędzia do monitorowania wydajności i dokładności modelu, co pozwala na bieżąco analizować jego efektywność.
-8. **Aktualizacja i zarządzanie wersjami modelu**
+   - W pierwszym kroku utworzyć zasób Azure Machine Learning Workspace w portalu Azure, który stanowi centralne miejsce do zarządzania wszystkimi zasobami związanymi z modelem.
+2. **Rejestracja modelu w Model Registry**
+   - Po zakończeniu treningu lokalnie, model powinien być zarejestrowany w **Model Registry**, co umożliwia zarządzanie wersjami i udostępnianie modelu do późniejszych wdrożeń.
+3. **Wdrożenie modelu jako usługę webową (REST API)**
+   - Model mógłby zostać wdrożony jako usługa webowa poprzez utworzenie **REST API**, co umożliwiło łatwą interakcję z modelem i jego integrację z innymi aplikacjami. Dzięki temu użytkownicy mogli w prosty sposób wysyłać zapytania do modelu i otrzymywać rekomendacje filmów.
+4. **Testowanie API i monitorowanie jego działania**
+   - Po wdrożeniu, API powinno być przetestowane, a jego działanie monitorowane w czasie rzeczywistym. Azure ML oferuje narzędzia do monitorowania wydajności i dokładności modelu, co pozwala na bieżąco analizować jego efektywność.
+5. **Aktualizacja i zarządzanie wersjami modelu**
    - W przypadku poprawy wydajności modelu, wprowadzania nowych technik, bądź zmiany hiperparametrów, możliwe jest zarządzanie wersjami modelu w Azure Machine Learning. Każda nowa wersja modelu może być zarejestrowana i wdrożona, zachowując kontrolę nad jego ewolucją.
   
-## 9. Wnioski
-Wyniki ewaluacji wskazują, że model uzyskał dobry poziom dokładności w przewidywaniu ocen, z RMSE na poziomie 0.931 oraz MAE wynoszącym 0.733. Precision@5 wyniosło 74.1%, a Recall@5 to 46.3%, co wskazuje na efektywność modelu w dostarczaniu trafnych rekomendacji. Dodatkowo, model dobrze radził sobie z generowaniem rekomendacji, a wyniki były sensowne i przydatne dla użytkowników. Proces strojenia hiperparametrów przyczynił się do poprawy wydajności modelu, a zastosowanie regularyzacji L2 oraz dropout okazało się skuteczne w unikaniu nadmiernego dopasowania.
+Wyniki ewaluacji wskazują, że model uzyskał dobry poziom dokładności w przewidywaniu ocen, z RMSE na poziomie 0.931 oraz MAE wynoszącym 0.733. Precision@5 wyniosło 74.1%, a Recall@5 to 46.3%, co wskazuje na efektywność modelu w dostarczaniu trafnych rekomendacji. Jednakże, rozkład ocen w danych treningowych nie był równomierny, co mogło wpłynąć na modelowanie i wyniki, szczególnie w przypadku ocen 3 i 4. Pomimo tego, model nadal dobrze radzi sobie z generowaniem sensownych rekomendacji. Strojenie hiperparametrów oraz zastosowanie regularyzacji L2 i dropout przyczyniły się do poprawy wydajności modelu i uniknięcia nadmiernego dopasowania.
