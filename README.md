@@ -39,10 +39,10 @@ Najlepsze parametry: embedding_dim=32, l2_lambda=0.0001
 ![training_loss](https://github.com/user-attachments/assets/99882539-456c-4f49-9b2b-a3b612fbf45d)
 
 ### Przewidywane vs rzeczywiste oceny
-![predicted_vs_actual](https://github.com/user-attachments/assets/bf8cfc68-fc12-48b1-97a1-164095c012e3)
+![predicted_vs_actual](https://github.com/user-attachments/assets/2408f291-15da-4710-86a1-0b6e681f9754)
 
 ### Macierz pomyłek
-![confusion_matrix](https://github.com/user-attachments/assets/b9298e04-d028-4292-a8ea-4a173097c085)
+![confusion_matrix](https://github.com/user-attachments/assets/3fd7ae5b-380c-4281-b7b5-53f01560973a)
 
 ### Rekomendacje dla trzech użytkowników
 ![image](https://github.com/user-attachments/assets/2e287fc2-747f-4c85-94c4-ce131b3edeea)
