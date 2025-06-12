@@ -238,7 +238,6 @@ def hyperparameter_tuning(train_data, test_data, num_users, num_items, output_di
         losses = train_model(model, train_data, num_epochs=10, l2_lambda=l2_lambda)
         rmse, mae, metrics, predictions = evaluate_model(model, test_data)
         
-        # Log parameters and metrics to the current active run
         mlflow.log_param(f"embedding_dim_{emb_dim}_{l2_lambda}", emb_dim)
         mlflow.log_param(f"l2_lambda_{emb_dim}_{l2_lambda}", l2_lambda)
         mlflow.log_metric(f"rmse_{emb_dim}_{l2_lambda}", rmse)
@@ -253,7 +252,6 @@ def hyperparameter_tuning(train_data, test_data, num_users, num_items, output_di
             best_model = model
             best_params = {'embedding_dim': emb_dim, 'l2_lambda': l2_lambda}
     
-    # Log best parameters
     mlflow.log_param("best_embedding_dim", best_params['embedding_dim'])
     mlflow.log_param("best_l2_lambda", best_params['l2_lambda'])
     mlflow.log_metric("best_rmse", best_rmse)
@@ -264,7 +262,7 @@ def hyperparameter_tuning(train_data, test_data, num_users, num_items, output_di
 # Krok 14: Główna funkcja
 def main():
     # Ścieżki
-    data_path = 'ml-100k/u.data'  # Zmień na 'dbfs:/mnt/your-container/u.data' w Azure
+    data_path = 'ml-100k/u.data'
     output_dir = 'results'
     os.makedirs(output_dir, exist_ok=True)
     
