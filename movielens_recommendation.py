@@ -122,23 +122,32 @@ def plot_training_loss(losses, output_dir):
 # Krok 7: Wizualizacja przewidywanych vs rzeczywistych ocen
 def plot_predicted_vs_actual(test_data, predictions, output_dir):
     test_ratings = test_data[2].numpy()
+    
     plt.figure(figsize=(10, 6), dpi=100)
-    plt.scatter(test_ratings, predictions, alpha=0.5, color='r')
-    plt.plot([1, 5], [1, 5], 'k--')  # Linia idealnego dopasowania
+    plt.scatter(test_ratings, predictions, alpha=0.3, s=10, color='red')
+    plt.plot([1, 5], [1, 5], 'k--', label='Idealne dopasowanie')
+    plt.xlim(0.5, 5.5)
+    plt.ylim(0, 6)
+    
     plt.title('Przewidywane vs rzeczywiste oceny')
     plt.xlabel('Rzeczywiste oceny')
     plt.ylabel('Przewidywane oceny')
     plt.grid(True)
+    plt.legend()
+    
     plt.savefig(os.path.join(output_dir, 'predicted_vs_actual.png'), bbox_inches='tight')
     plt.close()
+
 
 # Krok 8: Macierz pomyłek dla zaokrąglonych ocen
 def plot_confusion_matrix(test_data, predictions, output_dir):
     test_ratings = test_data[2].numpy()
     predicted_ratings = np.clip(np.round(predictions), 1, 5)  # Zaokrąglenie do 1-5
-    cm = confusion_matrix(test_ratings, predicted_ratings)
+    cm = confusion_matrix(test_ratings, predicted_ratings, labels=[1, 2, 3, 4, 5])
     plt.figure(figsize=(8, 6), dpi=100)
-    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues')
+    labels = [1, 2, 3, 4, 5]
+    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues',
+            xticklabels=labels, yticklabels=labels)
     plt.title('Macierz pomyłek dla zaokrąglonych ocen')
     plt.xlabel('Przewidywana ocena')
     plt.ylabel('Rzeczywista ocena')
@@ -268,7 +277,10 @@ def main():
     
     # Wczytanie danych
     data = load_data(data_path)
-    
+
+    # Wizualizacja danych
+    print(data.head(10))
+
     # Wizualizacja rozkładu ocen
     plot_rating_distribution(data, output_dir)
     
