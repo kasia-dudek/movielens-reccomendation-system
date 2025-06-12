@@ -80,7 +80,7 @@ Aby wdrożyć ten model rekomendacji na platformie Azure Machine Learning, nale�
 2. **Rejestracja modelu w Model Registry**
    - Po zakończeniu treningu lokalnie, model powinien być zarejestrowany w **Model Registry**, co umożliwia zarządzanie wersjami i udostępnianie modelu do późniejszych wdrożeń.
 3. **Wdrożenie modelu jako usługę webową (REST API)**
-   - Model mógłby zostać wdrożony jako usługa webowa poprzez utworzenie **REST API**, co umożliwiło łatwą interakcję z modelem i jego integrację z innymi aplikacjami. Dzięki temu użytkownicy mogli w prosty sposób wysyłać zapytania do modelu i otrzymywać rekomendacje filmów.
+   - Model mógłby zostać wdrożony jako usługa webowa poprzez utworzenie **REST API**, co umożliwiło łatwą interakcję z modelem i jego integrację z innymi aplikacjami. Dzięki temu użytkownicy mogli w prosty sposób wysyłać zapytania do modelu i otrzymywać rekomendacje filmów. Do budowy API można wykorzystać funkcję def recommend_movies(model, user_id, user_id_map, movie_id_map, num_items, top_k=5).
 4. **Testowanie API i monitorowanie jego działania**
    - Po wdrożeniu, API powinno być przetestowane, a jego działanie monitorowane w czasie rzeczywistym. Azure ML oferuje narzędzia do monitorowania wydajności i dokładności modelu, co pozwala na bieżąco analizować jego efektywność.
 5. **Aktualizacja i zarządzanie wersjami modelu**
