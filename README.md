@@ -1,6 +1,6 @@
 # System Rekomendacji Filmów - MovieLens
 
-Prace przygotowały:
+Pracę przygotowały:
 Karolina Dekajło i Katarzyna Dudek
 
 ## 1. Streszczenie
